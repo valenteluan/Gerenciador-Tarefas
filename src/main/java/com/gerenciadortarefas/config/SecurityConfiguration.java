@@ -21,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfiguration {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(usuarioAutenticadoService).passwordEncoder(new BCryptPasswordEncoder());
     }
