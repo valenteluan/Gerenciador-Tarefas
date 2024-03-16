@@ -24,6 +24,7 @@ public class AutenticacaoService {
     static public void addJWTToken(HttpServletResponse response, Authentication authentication) {
 
         Map<String, Object> claims = new HashMap<>();
+
         claims.put(AUTHORITIES, authentication
                 .getAuthorities()
                 .stream()
@@ -33,7 +34,7 @@ public class AutenticacaoService {
         String jwtToken = Jwts.builder()
                 .setSubject(authentication.getName())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TOKEN_ONE_HOUR))
-                .signWith(SignatureAlgorithm.ES512, JWT_KEY)
+                .signWith(SignatureAlgorithm.HS512, JWT_KEY)
                 .addClaims(claims)
                 .compact();
 

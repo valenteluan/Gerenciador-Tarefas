@@ -1,5 +1,6 @@
 package com.gerenciadortarefas.entity.users;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gerenciadortarefas.permissoes.PermissaoEnum;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class Role implements Serializable {
     private PermissaoEnum nome;
 
     @ManyToMany(mappedBy = "roles")
+    @JsonBackReference
     private List<Usuario> usuarios;
 
 }

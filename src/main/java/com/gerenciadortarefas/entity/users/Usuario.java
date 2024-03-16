@@ -21,10 +21,10 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(unique = true, length = 20)
+    @Column(unique = true, length = 50)
     private String username;
 
-    @Column(length = 50)
+    @Column(length = 150)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
