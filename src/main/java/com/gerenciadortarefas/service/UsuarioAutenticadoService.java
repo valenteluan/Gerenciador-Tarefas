@@ -22,13 +22,14 @@ public class UsuarioAutenticadoService implements UserDetailsService {
     private UsuarioRepository usuarioRepository;
 
     public UserDetails loadUserByUsername(String username) {
+
         Usuario usuario = usuarioRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario " + username + " não encontrado!"));
 
         List<SimpleGrantedAuthority> roles = usuario.getRoles()
                 .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getNome()))
-                .collect(Collectors.toList());
+                .map(role -> new SimpleGrantedAuthority(role.getNome().toString()))
+                .toList();
 
         return new User(usuario.getUsername(), usuario.getPassword(), roles);
     }

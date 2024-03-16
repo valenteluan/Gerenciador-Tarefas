@@ -31,7 +31,7 @@ public class LoginFiltro extends AbstractAuthenticationProcessingFilter {
         UsuarioAutenticado usuarioAutenticado = new ObjectMapper().readValue(collect, UsuarioAutenticado.class);
         return getAuthenticationManager()
                 .authenticate(new UsernamePasswordAuthenticationToken(
-                        usuarioAutenticado.getUserName(),
+                        usuarioAutenticado.getUsername(),
                         usuarioAutenticado.getPassword(),
                         Collections.emptyList()
                 ));
@@ -43,7 +43,7 @@ public class LoginFiltro extends AbstractAuthenticationProcessingFilter {
                                             FilterChain filterChain,
                                             Authentication authentication) {
 
-        AutenticacaoService.addJWTToken(httpServletResponse, authentication.getName());
+        AutenticacaoService.addJWTToken(httpServletResponse, authentication);
 
     }
 
