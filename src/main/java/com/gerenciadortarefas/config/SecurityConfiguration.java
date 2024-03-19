@@ -46,6 +46,7 @@ public class SecurityConfiguration {
                             .requestMatchers(HttpMethod.GET, "/teste-api-bem-vindo").hasAuthority(PermissaoEnum.ADMINISTRADOR.toString())
                             .requestMatchers(HttpMethod.GET, "/usuarios").hasAuthority(PermissaoEnum.USUARIO.toString())
                             .requestMatchers(HttpMethod.POST, "/usuarios").hasAuthority(PermissaoEnum.ADMINISTRADOR.toString())
+                            .requestMatchers(HttpMethod.POST, "/gerenciador-tarefas").hasAuthority(PermissaoEnum.ADMINISTRADOR.toString())
                             .anyRequest().authenticated();
                 });
         http.addFilterBefore(new LoginFiltro("/login", authenticationConfiguration.getAuthenticationManager()), UsernamePasswordAuthenticationFilter.class);
