@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -43,6 +44,10 @@ public class UsuarioService {
 
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return usuarioRepository.save(usuario);
+    }
+
+    public Optional<Usuario> obeterUsuarioId(Long usuarioId) {
+        return usuarioRepository.findById(usuarioId);
     }
 
     public void excluirUsuario(Usuario usuario) {
